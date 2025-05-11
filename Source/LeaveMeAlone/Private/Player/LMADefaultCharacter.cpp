@@ -14,9 +14,16 @@ ALMADefaultCharacter::ALMADefaultCharacter()
 
 	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
 	SpringArmComponent->SetupAttachment(GetRootComponent());
+	SpringArmComponent->SetUsingAbsoluteRotation(true);
+	SpringArmComponent->TargetArmLength = ArmLength;
+	SpringArmComponent->SetRelativeRotation(FRotator(YRotation, 0.0f, 0.0f));
+	SpringArmComponent->bDoCollisionTest = false;
+	SpringArmComponent->bEnableCameraLag = true;
 
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
 	CameraComponent->SetupAttachment(SpringArmComponent);
+	CameraComponent->SetFieldOfView(FOV);
+	CameraComponent->bUsePawnControlRotation = false;
 
 
 }
